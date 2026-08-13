@@ -411,12 +411,14 @@
     transition: all 0.3s;
     backdrop-filter: blur(12px);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    z-index: 1;
   }
   .stat-card::before {
     content: '';
     position: absolute;
     inset: 0;
+    border-radius: inherit;
     background: linear-gradient(135deg, transparent 0%, rgba(255, 196, 221, 0.04) 100%);
     pointer-events: none;
   }
@@ -424,6 +426,10 @@
     border-color: var(--pink-bright);
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(255, 77, 158, 0.2);
+    z-index: 10;
+  }
+  .stat-card:focus-within {
+    z-index: 10;
   }
   .stat-card.highlight {
     background: linear-gradient(135deg, var(--magenta) 0%, var(--purple-bright) 100%);
@@ -456,6 +462,47 @@
     position: relative;
   }
   .stat-card.highlight .stat-label { color: rgba(255,255,255,0.9); }
+  .tooltip-wrap {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    color: var(--pink);
+    font-size: 10px;
+    line-height: 1;
+    position: relative;
+    z-index: 5;
+  }
+  .tooltip-wrap:focus-visible {
+    outline: 2px solid var(--pink-bright);
+    outline-offset: 2px;
+  }
+  .tooltip-text {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-20%);
+    width: min(260px, 78vw);
+    background: rgba(6, 2, 18, 0.96);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.35;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+    z-index: 20;
+  }
+  .tooltip-wrap:hover .tooltip-text,
+  .tooltip-wrap:focus-visible .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+  }
   .stat-value {
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 48px;
@@ -625,6 +672,18 @@
     text-align: center;
     padding: 24px;
     backdrop-filter: blur(8px);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .content-card > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
   }
   .content-card:hover {
     transform: translateY(-4px);
@@ -655,6 +714,7 @@
     text-transform: uppercase;
     backdrop-filter: blur(8px);
     border: 1px solid var(--border);
+    z-index: 2;
   }
   .content-card .placeholder {
     font-size: 13px;
@@ -672,6 +732,7 @@
     color: #fff;
     text-align: left;
     letter-spacing: -0.02em;
+    z-index: 2;
   }
   .content-card .views small {
     display: block;
@@ -700,11 +761,18 @@
     color: var(--text-mute);
     font-size: 13px;
     text-align: center;
-    padding: 16px;
     transition: all 0.3s;
     backdrop-filter: blur(8px);
     font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Monaco, Consolas, monospace;
     letter-spacing: 0.05em;
+    overflow: hidden;
+  }
+  .collab-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
   .collab-card:hover {
     border-color: var(--pink-bright);
@@ -768,6 +836,14 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     border: 1px solid var(--border);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  a.service-tag:hover {
+    background: rgba(255, 158, 199, 0.2);
+    border-color: var(--pink-bright);
+    color: #fff;
   }
   .service-desc {
     color: var(--text-dim);
