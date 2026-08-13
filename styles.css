@@ -528,6 +528,17 @@
     gap: 80px;
     align-items: start;
   }
+  .about-photo {
+    margin-top: 24px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .about-photo img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
   .about-bio {
     font-size: 19px;
     color: var(--text-dim);
