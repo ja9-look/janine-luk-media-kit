@@ -853,7 +853,7 @@
   .service-tag {
     background: var(--pink-soft);
     color: var(--pink-bright);
-    padding: 6px 14px;
+    padding: 10px 14px;
     border-radius: 100px;
     font-size: 11px;
     font-weight: 700;
@@ -1099,7 +1099,7 @@
   /* === RESPONSIVE === */
   @media (max-width: 968px) {
     .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto; row-gap: 32px; }
-    .hero-text-top  { grid-column: 1; grid-row: auto; order: 1; margin-bottom: -20px; }
+    .hero-text-top  { grid-column: 1; grid-row: auto; order: 1; margin-bottom: -32px; }
     .hero-visual    { grid-column: 1; grid-row: auto; order: 2; max-width: 400px; margin: 0 auto; }
     .hero-text-bottom { grid-column: 1; grid-row: auto; order: 3; }
     .hero-photo { max-width: 400px; margin: 0 auto; }
